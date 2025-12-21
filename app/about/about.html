@@ -23,6 +23,16 @@
     <link rel="icon" type="image/png" href="/logo/favicon.png">
     <title>Brainful</title>
   </head>
+  <script>
+  document.querySelectorAll(".scroll-arrow").forEach(arrow => {
+    arrow.addEventListener("click", () => {
+      const targetId = arrow.getAttribute("data-target");
+      document.getElementById(targetId).scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  });
+</script>
   <body>
     <header>
        <a class="logo" href="/app/about/about.html"><img src="/logo/whitelogo.png" alt="logo"></a>
@@ -42,3 +52,34 @@
           <div class="aboutbanner">
       <img src="aboutbanner.png" alt="banner">
           </div>
+        </div>
+
+<!-- Single scroll arrow (About → Description) -->
+<div class="scroll-next">
+  <a href="#description" class="next-arrow" aria-label="Scroll to next section">
+    <i class="fa-solid fa-arrow-down"></i>
+  </a>
+</div>
+
+<!-- Description Section -->
+<section id="description" class="section description-section">
+  <h2>About the App</h2>
+  <p>
+    Brainful is designed to help students stay organized, focused, and balanced.
+    From scheduling and task management to notes and reminders, everything lives
+    in one clean, distraction-free space.
+  </p>
+</section>
+
+<!-- Single scroll arrow (Description → Contact) -->
+<div class="scroll-next">
+  <a href="#contact" class="next-arrow" aria-label="Scroll to next section">
+    <i class="fa-solid fa-arrow-down"></i>
+  </a>
+</div>
+
+<!-- Contact Section -->
+<section id="contact" class="section contact-section">
+  <h2>Contact</h2>
+  <p>Have feedback or questions? Reach out and help us make Brainful better.</p>
+</section>
