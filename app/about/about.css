@@ -28,7 +28,7 @@
 .aboutapp {
   color: white;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .title img {
@@ -37,6 +37,7 @@
 }
 
 .title h1 {
+    text-align: center;
     font-size: 90px;
     font-family: "Cause", cursive;
     font-weight: 200;
@@ -112,70 +113,48 @@ nav {
   color: #ffffff;
 }
 
-/* Scroll arrows */
-.scroll-arrows {
-margin-top: 40px;
-display: flex;
-justify-content: center;
-gap: 60px;
+
+/* Description layout */
+.description-section {
+  padding-top: 100px;
+  padding-bottom: 0px;
+  margin-top: -100px;
+  margin-bottom: -70px;
 }
 
-
-.scroll-arrow {
-color: rgb(255, 255, 255);
-text-decoration: none;
-display: flex;
-flex-direction: column;
-align-items: center;
-font-size: 18px;
-transition: transform 0.3s ease;
-}
-
-
-.scroll-arrow i {
-font-size: 28px;
-margin-bottom: 6px;
-}
-
-
-.scroll-arrow:hover {
-opacity: 1;
-transform: translateY(6px);
-}
-
-/* Centered single arrow between sections */
-.scroll-next {
+.description-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 120px;
-  margin-top: -80px; 
+  justify-content: space-between;
+  gap: 80px;
+  text-align: left;
 }
 
-/* Solid arrow styling */
-.next-arrow {
-  color: rgb(255, 255, 255);
-  font-size: 34px;
-  opacity: 1;
-  transition: transform 0.3s ease;
+/* Left image */
+.description-image img {
+  width: 540px;
+  height: 400px;
+  transform: translateX(-50px);
 }
 
-/* Subtle motion on hover */
-.next-arrow:hover {
-  opacity: 1;
-  transform: translateY(10px);
+/* Right text */
+.description-text {
+  text-align: center;
+  max-width: 1000px;
 }
 
-/* Optional gentle pulse animation */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-  100% { transform: translateY(0); }
+.description-text h2 {
+  font-size: 60px;
+  margin-bottom: 30px;
+  font-weight: 200;
 }
 
-.next-arrow {
-  animation: float 2.5s ease-in-out infinite;
+.description-text p {
+  font-size: 22px;
+  line-height: 1.6;
+  opacity: 0.9;
 }
+
 
 /* Sections */
 .section {
@@ -189,7 +168,7 @@ text-align: center;
 .section h2 {
 font-size: 60px;
 margin-bottom: 30px;
-font-weight: 400;
+font-weight: 200;
 }
 
 
@@ -199,14 +178,37 @@ line-height: 1.6;
 opacity: 0.9;
 }
 
+.contact-section {
+  padding-top: 0px;
+  padding-bottom: 80px;
+}
 
 .contact-list {
 list-style: none;
-margin-top: 30px;
+margin-top: -10px;
 font-size: 20px;
 }
 
 
 .contact-list li {
 margin: 12px 0;
+}
+
+/* Social media buttons */
+.social-links {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.social-links a {
+  color: white;
+  font-size: 34px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-6px);
+  opacity: 0.85;
 }
