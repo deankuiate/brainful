@@ -83,3 +83,187 @@ nav {
   color: #b8bebe;
 }
 
+/* APP LAYOUT */
+
+.app {
+  display: flex;
+  height: calc(100vh - 130px);
+  color: white;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 260px;
+  border-right: 1px solid #1a1a1a;
+  padding: 30px;
+}
+
+.add-task-btn {
+  width: 100%;
+  background: white;
+  color: black;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  padding: 12px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  gap: 10px;
+  opacity: 0.7;
+}
+
+.menu li.active,
+.menu li:hover {
+  opacity: 1;
+}
+
+/* CONTENT */
+
+.content {
+  flex: 1;
+  padding: 40px 60px;
+  overflow-y: auto;
+}
+
+.content h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* TASK LIST */
+
+#task-list {
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.task input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.task input[type="checkbox"]:checked {
+  background: white;
+}
+
+.task.completed span {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+/* ADD TASK */
+
+.task-input {
+  margin-top: 30px;
+  border: 1px solid #1a1a1a;
+  padding: 20px;
+}
+
+.task-input input {
+  width: 100%;
+  background: black;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.task-actions button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.task-actions button:first-child {
+  background: black;
+  color: white;
+  border: 1px solid white;
+}
+
+.hidden {
+  display: none;
+}
+
+/* DRAG */
+
+.task {
+  cursor: grab;
+}
+
+.task.dragging {
+  opacity: 0.3;
+}
+
+/* TASK DETAIL PANEL */
+
+.task-detail {
+  margin-top: 40px;
+  border-top: 1px solid #1a1a1a;
+  padding-top: 20px;
+}
+
+.task-detail input {
+  width: 100%;
+  background: black;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.task-detail textarea {
+  width: 100%;
+  min-height: 150px;
+  background: black;
+  border: 1px solid #1a1a1a;
+  color: white;
+  font-size: 16px;
+  padding: 15px;
+  resize: vertical;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+#close-detail {
+  cursor: pointer;
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+#close-detail:hover {
+  opacity: 1;
+}

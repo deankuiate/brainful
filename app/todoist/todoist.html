@@ -33,3 +33,44 @@
                 </ul>
             </nav>
     </header>
+
+    <main class="app">
+  <aside class="sidebar">
+  <button class="add-task-btn">
+    <i class="fa-solid fa-plus"></i> Add task
+  </button>
+
+  <ul class="menu">
+    <li class="active">
+      <i class="fa-regular fa-calendar"></i> Today
+    </li>
+  </ul>
+</aside>
+
+  <section class="content">
+    <h1 id="view-title">Inbox</h1>
+
+    <ul id="task-list"></ul>
+
+<div class="task-input hidden">
+  <input type="text" id="task-text" placeholder="Task name" />
+  <div class="task-actions">
+    <button id="cancel-task">Cancel</button>
+    <button id="save-task">Add task</button>
+  </div>
+</div>
+  </section>
+
+<div id="task-detail" class="task-detail hidden">
+  <div class="detail-header">
+    <span id="close-detail">✕</span>
+  </div>
+
+  <input id="detail-title" />
+  <textarea id="detail-notes" placeholder="Notes..."></textarea>
+</div>
+
+
+</main>
+
+<script src="todoist.js"></script>
