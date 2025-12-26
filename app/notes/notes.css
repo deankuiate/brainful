@@ -85,79 +85,108 @@ nav {
 }
 
 
-/* APP LAYOUT */
-.app-container {
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
+/* NOTION LAYOUT */
+.notion-app {
+  display: flex;
+  height: calc(100vh - 130px);
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-  font-weight: 700;
-}
-
-/* BUTTON */
-#add-note {
-  background: #ffffff;
-  color: #000000;
-  border: none;
-  padding: 10px 18px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  transition: 0.2s;
-}
-
-#add-note:hover {
-  opacity: 0.8;
-}
-
-/* NOTES GRID */
-#notes {
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  border-right: 2px solid white;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: center;
 }
 
-/* NOTE STYLES */
-.note {
-  background: #000000;
-  border: 2px solid #ffffff;
-  width: 95%;
-  padding: 14px;
-  border-radius: 6px;
-  position: relative;
-  box-shadow: 2px 2px 0 #ffffff;
-}
-
-.note textarea {
-  width: 100%;
-  height: 100px;
+#new-page {
+  background: white;
+  color: black;
   border: none;
-  resize: none;
-  font-size: 1rem;
-  outline: none;
-  background: transparent;
-  color: #ffffff;
-}
-
-.note button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  border: none;
-  background: none;
-  font-size: 1.2rem;
+  padding: 10px;
+  margin-bottom: 20px;
   cursor: pointer;
-  color: #ffffff;
+  border-radius: 5px;
 }
 
-/* DELETE BUTTON */
-.note button.delete {
-  color: #900;
+#page-list {
+  list-style: none;
+  overflow-y: auto;
+}
+
+#page-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#page-list li.active {
+  background: white;
+  color: black;
+}
+
+/* EDITOR */
+.editor {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+#page-title {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  margin-bottom: 20px;
+}
+
+#page-content {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1.1rem;
+  color: white;
+  line-height: 1.6;
+}
+
+/* PAGE TAB WITH DELETE */
+#page-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.page-title {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Trash button */
+.delete-page {
+  opacity: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+#page-list li:hover .delete-page {
+  opacity: 1;
+}
+
+/* Prevent click conflict */
+.delete-page:hover {
+  color: red;
 }

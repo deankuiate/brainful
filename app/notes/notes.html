@@ -34,11 +34,23 @@
                 </ul>
             </nav>
     </header>
-  <div class="app-container">
-    <h1>Brainful Notes</h1>
-    <button id="add-note">➕ Add Note</button>
-    <div id="notes"></div>
-  </div>
+
+<!-- NOTION STYLE APP -->
+<div class="notion-app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <button id="new-page">+ New Page</button>
+    <ul id="page-list"></ul>
+  </aside>
+
+  <!-- EDITOR -->
+  <main class="editor">
+    <input id="page-title" placeholder="UNTITLED" />
+    <textarea id="page-content" placeholder="Start writing to start your note! Make sure you're on a page..."></textarea>
+  </main>
+
+</div>
 
   <script src="notes.js"></script>
 </body>

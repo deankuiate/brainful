@@ -1,44 +1,101 @@
-const addBtn = document.getElementById("add-note");
-const notesContainer = document.getElementById("notes");
+const newPageBtn = document.getElementById("new-page");
+const pageList = document.getElementById("page-list");
+const titleInput = document.getElementById("page-title");
+const contentInput = document.getElementById("page-content");
 
-// Load saved notes from localStorage
-const savedNotes = JSON.parse(localStorage.getItem("brainful-notes")) || [];
+let pages = JSON.parse(localStorage.getItem("brainful-pages")) || [];
+let currentPageId = null;
 
-// Render any that exist
-savedNotes.forEach(note => addNote(note));
+// Render pages in sidebar
+function renderPages() {
+  pageList.innerHTML = "";
 
-// Add new note
-addBtn.addEventListener("click", () => addNote());
+  pages.forEach(page => {
+    const li = document.createElement("li");
+    li.classList.toggle("active", page.id === currentPageId);
 
-function addNote(text = "") {
-  const noteEl = document.createElement("div");
-  noteEl.classList.add("note");
+    const titleSpan = document.createElement("span");
+    titleSpan.className = "page-title";
+    titleSpan.textContent = page.title || "Untitled";
+    titleSpan.onclick = () => openPage(page.id);
 
-  noteEl.innerHTML = `
-    <button class="delete">✖</button>
-    <textarea>${text}</textarea>
-  `;
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-page";
+    deleteBtn.innerHTML = "🗑";
 
-  const deleteBtn = noteEl.querySelector(".delete");
-  const textArea = noteEl.querySelector("textarea");
+    deleteBtn.onclick = (e) => {
+      e.stopPropagation();
+      deletePage(page.id);
+    };
 
-  deleteBtn.addEventListener("click", () => {
-    noteEl.remove();
-    updateStorage();
+    li.appendChild(titleSpan);
+    li.appendChild(deleteBtn);
+    pageList.appendChild(li);
   });
-
-  textArea.addEventListener("input", () => {
-    updateStorage();
-  });
-
-  notesContainer.appendChild(noteEl);
-  updateStorage();
 }
 
-function updateStorage() {
-  const notesText = [];
-  document.querySelectorAll(".note textarea").forEach(textarea => {
-    notesText.push(textarea.value);
-  });
-  localStorage.setItem("brainful-notes", JSON.stringify(notesText));
+// Open a page
+function openPage(id) {
+  const page = pages.find(p => p.id === id);
+  if (!page) return;
+
+  currentPageId = id;
+  titleInput.value = page.title;
+  contentInput.value = page.content;
+  renderPages();
+}
+
+// Create new page
+newPageBtn.onclick = () => {
+  const newPage = {
+    id: Date.now(),
+    title: "Untitled",
+    content: ""
+  };
+  pages.unshift(newPage);
+  save();
+  openPage(newPage.id);
+};
+
+// Save edits
+titleInput.oninput = () => {
+  const page = pages.find(p => p.id === currentPageId);
+  if (!page) return;
+  page.title = titleInput.value;
+  save();
+  renderPages();
+};
+
+contentInput.oninput = () => {
+  const page = pages.find(p => p.id === currentPageId);
+  if (!page) return;
+  page.content = contentInput.value;
+  save();
+};
+
+function save() {
+  localStorage.setItem("brainful-pages", JSON.stringify(pages));
+}
+
+// Init
+if (pages.length) {
+  openPage(pages[0].id);
+}
+renderPages();
+
+function deletePage(id) {
+  pages = pages.filter(p => p.id !== id);
+
+  if (currentPageId === id) {
+    if (pages.length) {
+      openPage(pages[0].id);
+    } else {
+      currentPageId = null;
+      titleInput.value = "";
+      contentInput.value = "";
+    }
+  }
+
+  save();
+  renderPages();
 }
