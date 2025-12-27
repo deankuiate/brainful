@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+
+  <!-- Font -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cause:wght@100..900&display=swap');
+  </style>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Cause', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 40px;
+      border: 1px solid #fff;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-weight: 300;
+      opacity: 0.8;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #fff;
+      color: #000;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: #000;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+
+    .error {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #aaa;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .error.show {
+      opacity: 1;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Private Access</h1>
+    <p>What’s the best app to use as your second brain?</p>
+
+    <input
+      type="text"
+      id="answer"
+      placeholder="Type your answer..."
+      autocomplete="off"
+    />
+
+    <button onclick="login()">Enter</button>
+
+    <div id="error" class="error">
+      That's not right...Try again.
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const answer = document.getElementById('answer').value.trim().toLowerCase();
+      const error = document.getElementById('error');
+
+      if (answer === 'brainful') {
+        window.location.href = '/app/about/about.html';
+      } else {
+        error.classList.add('show');
+      }
+    }
+
+    // Allow Enter key
+    document.getElementById('answer').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        login();
+      }
+    });
+  </script>
+</body>
+</html>
