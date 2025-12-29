@@ -2,6 +2,7 @@ const newPageBtn = document.getElementById("new-page");
 const pageList = document.getElementById("page-list");
 const titleInput = document.getElementById("page-title");
 const contentInput = document.getElementById("page-content");
+const emptyState = document.getElementById("empty-state");
 
 let pages = JSON.parse(localStorage.getItem("brainful-pages")) || [];
 let currentPageId = null;
@@ -13,11 +14,15 @@ function disableEditor() {
 
   titleInput.disabled = true;
   contentInput.disabled = true;
+
+  emptyState.style.display = "flex";
 }
 
 function enableEditor() {
   titleInput.disabled = false;
   contentInput.disabled = false;
+
+  emptyState.style.display = "none";
 }
 
 
@@ -118,3 +123,5 @@ function deletePage(id) {
   save();
   renderPages();
 }
+
+
