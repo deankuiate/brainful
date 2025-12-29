@@ -6,6 +6,21 @@ const contentInput = document.getElementById("page-content");
 let pages = JSON.parse(localStorage.getItem("brainful-pages")) || [];
 let currentPageId = null;
 
+
+function disableEditor() {
+  titleInput.value = "";
+  contentInput.value = "";
+
+  titleInput.disabled = true;
+  contentInput.disabled = true;
+}
+
+function enableEditor() {
+  titleInput.disabled = false;
+  contentInput.disabled = false;
+}
+
+
 // Render pages in sidebar
 function renderPages() {
   pageList.innerHTML = "";
@@ -42,6 +57,8 @@ function openPage(id) {
   currentPageId = id;
   titleInput.value = page.title;
   contentInput.value = page.content;
+
+  enableEditor();
   renderPages();
 }
 
@@ -80,6 +97,8 @@ function save() {
 // Init
 if (pages.length) {
   openPage(pages[0].id);
+} else {
+  disableEditor();
 }
 renderPages();
 
