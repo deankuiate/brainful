@@ -15,13 +15,18 @@ function disableEditor() {
   titleInput.disabled = true;
   contentInput.disabled = true;
 
+  titleInput.style.display = "none";
+  contentInput.style.display = "none";
   emptyState.style.display = "flex";
 }
+
 
 function enableEditor() {
   titleInput.disabled = false;
   contentInput.disabled = false;
 
+  titleInput.style.display = "block";
+  contentInput.style.display = "block";
   emptyState.style.display = "none";
 }
 
@@ -115,8 +120,7 @@ function deletePage(id) {
       openPage(pages[0].id);
     } else {
       currentPageId = null;
-      titleInput.value = "";
-      contentInput.value = "";
+      disableEditor();
     }
   }
 
