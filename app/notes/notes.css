@@ -132,7 +132,6 @@ nav {
   padding: 40px;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 #page-title {
@@ -141,7 +140,6 @@ nav {
   border: none;
   outline: none;
   color: white;
-  margin-bottom: auto;
 }
 
 #page-content {
