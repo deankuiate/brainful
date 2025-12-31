@@ -132,6 +132,7 @@ nav {
   padding: 40px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 #page-title {
@@ -140,7 +141,7 @@ nav {
   border: none;
   outline: none;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: auto;
 }
 
 #page-content {
@@ -148,10 +149,11 @@ nav {
   background: transparent;
   border: none;
   outline: none;
-  resize: none;
   font-size: 1.1rem;
   color: white;
   line-height: 1.6;
+  height: 50%;
+  resize: none;
 }
 
 /* PAGE TAB WITH DELETE */
