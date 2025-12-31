@@ -203,10 +203,12 @@ nav {
 }
 
 #empty-state h2 {
+  font-weight: 200px;
   font-size: 2rem;
   margin-bottom: 10px;
 }
 
 #empty-state p {
+  font-weight: 200px;
   font-size: 1rem;
 }
