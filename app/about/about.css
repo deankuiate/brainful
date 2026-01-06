@@ -86,23 +86,23 @@ nav {
 .title h1 {
   font-size: 90px;
   font-weight: 200;
-  letter-spacing: 6px;
 }
 
 /* Banner */
 .aboutbanner img {
   width: 100%;
   max-width: 1100px;
-  height: auto;
+  max-height: 700px;
+  object-fit: cover;
   display: block;
-  margin: 60px auto 0;
+  margin: 0 auto;
   border-radius: 12px;
 }
 
 
 /* Sections */
 .section {
-  padding: 180px 15%;
+  padding: 140px 15%;
   color: white;
   text-align: center;
 }
@@ -130,9 +130,12 @@ nav {
 
 .description-image img {
   width: 100%;
-  max-width: 740px;
+  max-width: 750px;
+  max-height: 550px;
   height: auto;
-  border-radius: 14px;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 25px 70px rgba(255, 255, 255, 0.06);
 }
 
 .description-text {
@@ -142,7 +145,7 @@ nav {
 
 /* Contact */
 .contact-section {
-  padding-top: 120px;
+  padding-top: 80px;
   padding-bottom: 120px;
 }
 
