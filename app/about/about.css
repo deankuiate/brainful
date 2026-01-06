@@ -91,14 +91,15 @@ nav {
 
 /* Banner */
 .aboutbanner img {
-  width: 1100px;
-  height: 500px;
-  object-fit: cover;
-  margin: 60px auto 0;
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
   display: block;
+  margin: 60px auto 0;
   border-radius: 12px;
   box-shadow: 0 30px 80px rgba(255, 255, 255, 0.04);
 }
+
 
 /* Sections */
 .section {
@@ -129,8 +130,9 @@ nav {
 }
 
 .description-image img {
-  width: 540px;
-  height: 400px;
+  width: 100%;
+  max-width: 540px;
+  height: auto;
   border-radius: 14px;
   box-shadow: 0 20px 60px rgba(255, 255, 255, 0.05);
 }
