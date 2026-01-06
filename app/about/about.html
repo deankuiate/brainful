@@ -1,90 +1,98 @@
+<!DOCTYPE html>
 <html lang="en">
   <base href="/brainful/">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content=""
-    />
-    <meta
-      name="keywords"
-      content="calendar, events, reminders"
-    />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
-  <link rel="stylesheet" href="app/about/about.css" />
-    <link rel="icon" type="image/png" href="logo/favicon.png">
+
+    <link rel="stylesheet" href="app/about/about.css" />
+    <link rel="icon" type="image/png" href="logo/favicon.png" />
+
     <title>Brainful</title>
   </head>
+
   <body>
+    <!-- Header -->
     <header>
-       <a class="logo" href="app/about/about.html"><img src="logo/whitelogo.png" alt="logo"></a>
-            <nav>
-                <ul class="nav__links">
-                    <li><a href="app/scheduler/scheduler.html">Scheduler</a></li>
-                    <li><a href="app/todoist/todoist.html">ToDoist</a></li>
-                    <li><a href="app/notes/notes.html">Notes</a></li>
-                </ul>
-            </nav>
+      <a class="logo" href="app/about/about.html">
+        <img src="logo/whitelogo.png" alt="logo" />
+      </a>
+
+      <nav>
+        <ul class="nav__links">
+          <li><a href="app/scheduler/scheduler.html">Scheduler</a></li>
+          <li><a href="app/todoist/todoist.html">ToDoist</a></li>
+          <li><a href="app/notes/notes.html">Notes</a></li>
+        </ul>
+      </nav>
     </header>
 
-     <div class="aboutapp">
-            <div class="title">
-                <h1>BRAINFUL</h1>
-            </div>
-          <div class="aboutbanner">
-      <img src="app/about/aboutbanner.png" alt="banner">
-          </div>
+    <!-- Hero -->
+    <div class="aboutapp">
+      <div class="title fade-up">
+        <h1>BRAINFUL</h1>
+      </div>
+
+      <div class="aboutbanner fade-up">
+        <img src="app/about/aboutbanner.png" alt="banner" />
+      </div>
+    </div>
+
+    <!-- About -->
+    <section class="section">
+      <div class="description-container">
+        <div class="description-image fade-left">
+          <img src="app/about/brainimage.png" alt="Brain illustration" />
         </div>
 
-<!-- Description Section -->
-<section id="description" class="section description-section">
-  <div class="description-container">
-    
-    <!-- LEFT: Image -->
-    <div class="description-image">
-      <img 
-        src="app/about/brainimage.png" 
-        alt="Brainful daily activities brain illustration"
-      />
-    </div>
+        <div class="description-text fade-right">
+          <h2>ABOUT</h2>
+          <p>
+            Brainful is your second brain.
+            From scheduling and tasks to notes and reminders,
+            everything lives in one clean and distraction free space.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <!-- RIGHT: Text -->
-    <div class="description-text">
-      <h2>ABOUT</h2>
-      <p>
-        Brainful is YOUR second Brain.
-        From scheduling and task management to notes and reminders,
-        everything lives in one clean, distraction-free space.
-      </p>
-    </div>
+    <!-- Contact -->
+    <section class="section contact-section fade-up">
+      <h2>CONTACT</h2>
+      <p>Have feedback or questions? Reach out and help make Brainful better.</p>
 
-  </div>
-</section>
+      <div class="social-links">
+        <a href="https://github.com/deankuiate" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
 
-<!-- Contact Section -->
-<section id="contact" class="section contact-section">
-  <h2>CONTACT</h2>
-  <p>Have feedback or questions? Reach out and help me make Brainful better.</p>
-    <!-- Social buttons -->
-  <div class="social-links">
-    <a href="https://github.com/deankuiate" target="_blank" aria-label="GitHub">
-      <i class="fa-brands fa-github"></i>
-    </a>
+        <a href="mailto:deanthemachine21@gmail.com">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
 
-    <a href="deanthemachine21@gmail.com" aria-label="Gmail">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
+        <a href="https://www.linkedin.com/in/deankuiate/" target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
 
-    <a href="https://www.linkedin.com/in/deankuiate/" target="_blank" aria-label="LinkedIn">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </div>
-</section>
+    <!-- Scroll Animation Script -->
+    <script>
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll(".fade-up, .fade-left, .fade-right")
+        .forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>

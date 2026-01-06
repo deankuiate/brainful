@@ -3,6 +3,7 @@
 :root {
   --primary-clr: #000000;
 }
+
 * {
   scroll-behavior: smooth;
   margin: 0;
@@ -12,116 +13,113 @@
   background-color: black;
 }
 
-/* nice scroll bar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: #000000;
-  border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb {
+  background: white;
   border-radius: 50px;
 }
 
-/* the body of the about page */
-.aboutapp {
-  color: white;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.title img {
-    width: 150px;
-    height: 150px;
-}
-
-.title h1 {
-    text-align: center;
-    font-size: 90px;
-    font-family: "Cause", cursive;
-    font-weight: 200;
-}
-
-.text {
-  margin-top: 700px;
-  margin-bottom: 300px;
-}
-
-.text {
-  transform: translateY(-100px);
-}
-
-.aboutbanner img {
-    width: 1100px;
-    height: 500px;
-    object-fit: fill;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* navagation bar */
+/* Header */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 130px;
-  background-color: #000;
   padding: 0 10%;
+  background-color: black;
 }
 
-/* LOGO */
 .logo img {
   height: 70px;
   width: 70px;
 }
 
-/* NAVIGATION */
 nav {
+  height: 100%;
   display: flex;
   align-items: center;
-  height: 100%;
 }
 
 .nav__links {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  gap: 40px;
   list-style: none;
-}
-
-.nav__links li {
   display: flex;
-  align-items: center;
-  height: 100%;
+  gap: 40px;
 }
 
 .nav__links li a {
-  display: flex;
-  align-items: center;
-  height: 100%;
   color: white;
   text-decoration: none;
   font-size: 21px;
   font-weight: 300;
-  padding: 0 10px;
-  transition: color 0.3s ease;
+  position: relative;
 }
 
-.nav__links li a:hover {
-  color: #ffffff;
+.nav__links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: white;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
 }
 
-
-/* Description layout */
-.description-section {
-  padding-top: 100px;
-  padding-bottom: 0px;
-  margin-top: -100px;
-  margin-bottom: -70px;
+.nav__links li a:hover::after {
+  width: 60%;
 }
 
+/* Main */
+.aboutapp {
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.title h1 {
+  font-size: 90px;
+  font-weight: 200;
+  letter-spacing: 6px;
+}
+
+/* Banner */
+.aboutbanner img {
+  width: 1100px;
+  height: 500px;
+  object-fit: cover;
+  margin: 60px auto 0;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(255, 255, 255, 0.04);
+}
+
+/* Sections */
+.section {
+  padding: 180px 15%;
+  color: white;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 60px;
+  font-weight: 200;
+  margin-bottom: 30px;
+}
+
+.section p {
+  font-size: 22px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Description */
 .description-container {
   display: flex;
   align-items: center;
@@ -130,71 +128,24 @@ nav {
   text-align: left;
 }
 
-/* Left image */
 .description-image img {
   width: 540px;
   height: 400px;
-  transform: translateX(-50px);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(255, 255, 255, 0.05);
 }
 
-/* Right text */
 .description-text {
+  max-width: 900px;
   text-align: center;
-  max-width: 1000px;
 }
 
-.description-text h2 {
-  font-size: 60px;
-  margin-bottom: 30px;
-  font-weight: 200;
-}
-
-.description-text p {
-  font-size: 22px;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-
-/* Sections */
-.section {
-min-height: auto;
-padding: 200px 15%;
-color: white;
-text-align: center;
-}
-
-
-.section h2 {
-font-size: 60px;
-margin-bottom: 30px;
-font-weight: 200;
-}
-
-
-.section p {
-font-size: 22px;
-line-height: 1.6;
-opacity: 0.9;
-}
-
+/* Contact */
 .contact-section {
-  padding-top: 0px;
-  padding-bottom: 80px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
-.contact-list {
-list-style: none;
-margin-top: -10px;
-font-size: 20px;
-}
-
-
-.contact-list li {
-margin: 12px 0;
-}
-
-/* Social media buttons */
 .social-links {
   margin-top: 60px;
   display: flex;
@@ -211,4 +162,28 @@ margin: 12px 0;
 .social-links a:hover {
   transform: translateY(-6px);
   opacity: 0.85;
+}
+
+/* Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translate(0);
 }
