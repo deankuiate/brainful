@@ -130,8 +130,8 @@ nav {
 
 .description-image img {
   width: 100%;
-  max-width: 750px;
-  max-height: 550px;
+  max-width: 850px;
+  max-height: 750px;
   height: auto;
   object-fit: contain;
   border-radius: 16px;
