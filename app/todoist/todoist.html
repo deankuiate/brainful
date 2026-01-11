@@ -32,39 +32,23 @@
       </nav>
     </header>
 
- <main class="app">
+
+    <main class="app">
       <!-- SIDEBAR -->
       <aside class="sidebar">
         <button id="new-task-btn">
           <i class="fa-solid fa-plus"></i> New Task
         </button>
 
-        <input id="search" placeholder="Search tasks..." />
-
         <ul class="menu">
-          <li data-view="inbox" class="active">Inbox</li>
-          <li data-view="today">Today</li>
+          <li data-view="today" class="active">Today</li>
           <li data-view="upcoming">Upcoming</li>
         </ul>
-
-        <div class="sidebar-footer">
-          <span id="task-count"></span>
-          <button id="clear-completed">Clear Done</button>
-        </div>
       </aside>
 
       <!-- MAIN -->
       <section class="content">
-        <div class="content-header">
-          <h1 id="view-title">Inbox</h1>
-
-          <select id="sort">
-            <option value="manual">Manual</option>
-            <option value="date">By Date</option>
-            <option value="priority">By Priority</option>
-          </select>
-        </div>
-
+        <h1 id="view-title">Today</h1>
         <ul id="task-list"></ul>
         <div id="empty" class="empty">No tasks here 👀</div>
       </section>
@@ -74,19 +58,12 @@
         <input id="detail-title" placeholder="Task title" />
         <textarea id="detail-notes" placeholder="Notes…"></textarea>
 
-        <label>
-          Due date
-          <input type="date" id="detail-date" />
-        </label>
-
-        <label>
-          Priority
-          <select id="detail-priority">
-            <option value="1">P1 (High)</option>
-            <option value="2">P2 (Medium)</option>
-            <option value="3">P3 (Low)</option>
-          </select>
-        </label>
+        <div id="date-wrapper">
+          <label>
+            Due date
+            <input type="date" id="detail-date" />
+          </label>
+        </div>
 
         <button id="delete-task">Delete task</button>
       </aside>
