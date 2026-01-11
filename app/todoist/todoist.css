@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cause:wght@100..900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -6,6 +6,19 @@
   padding: 0;
   font-family: Inter, sans-serif;
 }
+
+/* nice scroll bar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+}
+
 
 html, body {
   width: 100%;
@@ -16,26 +29,53 @@ html, body {
 
 /* HEADER (UNCHANGED) */
 header {
-  height: 130px;
-  background: black;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  height: 130px;
   padding: 0 10%;
+  background-color: black;
 }
 
-.logo img { width: 70px; }
+.logo img {
+  height: 70px;
+  width: 70px;
+}
+
+nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
 .nav__links {
+  list-style: none;
   display: flex;
   gap: 40px;
-  list-style: none;
 }
 
-.nav__links a {
+.nav__links li a {
   color: white;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 21px;
+  font-weight: 300;
+  position: relative;
+}
+
+.nav__links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: white;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav__links li a:hover::after {
+  width: 60%;
 }
 
 /* APP */
