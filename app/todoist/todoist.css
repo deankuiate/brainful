@@ -1,53 +1,79 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cause:wght@100..900&display=swap');
 
 :root {
-  --bg: #0b0b0b;
-  --panel: #111;
-  --border: rgba(255, 255, 255, 0.08);
-  --text: #ffffff;
-  --muted: rgba(255, 255, 255, 0.55);
-  --accent: #ffffff;
+  --primary-clr: #000000;
 }
 
 * {
-  box-sizing: border-box;
+  scroll-behavior: smooth;
   margin: 0;
   padding: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  box-sizing: border-box;
+  font-family: "Cause", cursive;
+  background-color: black;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  height: 100vh;
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 50px;
 }
 
-/* HEADER */
-
+/* Header */
 header {
-  height: 72px;
-  border-bottom: 1px solid var(--border);
-  padding: 0 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 130px;
+  padding: 0 10%;
+  background-color: black;
 }
 
-.logo {
-  font-weight: 600;
-  letter-spacing: 0.5px;
+.logo img {
+  height: 70px;
+  width: 70px;
 }
 
-nav a {
-  color: var(--muted);
+nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.nav__links li a {
+  color: white;
   text-decoration: none;
-  margin-left: 28px;
-  font-size: 14px;
+  font-size: 21px;
+  font-weight: 300;
+  position: relative;
 }
 
-nav a.active,
-nav a:hover {
-  color: var(--text);
+.nav__links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: white;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav__links li a:hover::after {
+  width: 60%;
 }
 
 /* APP LAYOUT */
