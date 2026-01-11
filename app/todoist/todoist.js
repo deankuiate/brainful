@@ -1,119 +1,104 @@
-const addTaskBtn = document.querySelector(".add-task-btn");
-const taskInputBox = document.querySelector(".task-input");
-const saveTaskBtn = document.getElementById("save-task");
-const cancelTaskBtn = document.getElementById("cancel-task");
-const taskList = document.getElementById("task-list");
-const taskText = document.getElementById("task-text");
-
-const taskDetail = document.getElementById("task-detail");
-const detailTitle = document.getElementById("detail-title");
-const detailNotes = document.getElementById("detail-notes");
-const closeDetailBtn = document.getElementById("close-detail");
-
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-let selectedTaskId = null;
+let selected = null;
+let view = "inbox";
 
-/* ADD TASK */
+const list = document.getElementById("task-list");
+const title = document.getElementById("view-title");
 
-addTaskBtn.onclick = () => {
-  taskInputBox.classList.remove("hidden");
-  taskText.focus();
+const detail = document.getElementById("detail");
+const dTitle = document.getElementById("detail-title");
+const dNotes = document.getElementById("detail-notes");
+const dDate = document.getElementById("detail-date");
+const dPriority = document.getElementById("detail-priority");
+
+document.getElementById("new-task-btn").onclick = () => {
+  const t = {
+    id: Date.now(),
+    title: "New task",
+    notes: "",
+    date: "",
+    priority: 2,
+    completed: false
+  };
+  tasks.unshift(t);
+  save();
+  open(t.id);
 };
 
-cancelTaskBtn.onclick = () => {
-  taskInputBox.classList.add("hidden");
-  taskText.value = "";
-};
-
-saveTaskBtn.onclick = addTask;
-
-taskText.addEventListener("keydown", e => {
-  if (e.key === "Enter") addTask();
+document.querySelectorAll(".menu li").forEach(li => {
+  li.onclick = () => {
+    document.querySelector(".menu .active").classList.remove("active");
+    li.classList.add("active");
+    view = li.dataset.view;
+    title.textContent = li.textContent;
+    render();
+  };
 });
 
-function addTask() {
-  if (!taskText.value.trim()) return;
+function render() {
+  list.innerHTML = "";
 
-  tasks.push({
-    id: Date.now(),
-    text: taskText.value,
-    notes: "",
-    completed: false
-  });
+  tasks
+    .filter(t => {
+      if (view === "today") return t.date === today();
+      if (view === "upcoming") return t.date > today();
+      return true;
+    })
+    .forEach(t => {
+      const li = document.createElement("li");
+      li.className = `task ${t.completed ? "completed" : ""}`;
+      li.innerHTML = `
+        <input type="checkbox" ${t.completed ? "checked" : ""}>
+        <span>${t.title}</span>
+      `;
 
-  taskText.value = "";
-  taskInputBox.classList.add("hidden");
-  save();
+      li.querySelector("input").onclick = e => {
+        t.completed = e.target.checked;
+        save();
+      };
+
+      li.onclick = e => {
+        if (e.target.tagName !== "INPUT") open(t.id);
+      };
+
+      list.appendChild(li);
+    });
 }
 
-/* SAVE */
+function open(id) {
+  selected = tasks.find(t => t.id === id);
+  detail.classList.remove("hidden");
+
+  dTitle.value = selected.title;
+  dNotes.value = selected.notes;
+  dDate.value = selected.date;
+  dPriority.value = selected.priority;
+}
+
+[dTitle, dNotes, dDate, dPriority].forEach(el => {
+  el.oninput = () => {
+    if (!selected) return;
+    selected.title = dTitle.value;
+    selected.notes = dNotes.value;
+    selected.date = dDate.value;
+    selected.priority = dPriority.value;
+    save();
+  };
+});
+
+document.getElementById("delete-task").onclick = () => {
+  tasks = tasks.filter(t => t !== selected);
+  detail.classList.add("hidden");
+  save();
+};
 
 function save() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
-  renderTasks();
+  render();
 }
 
-/* RENDER */
-
-function renderTasks() {
-  taskList.innerHTML = "";
-
-  tasks.forEach(task => {
-    const li = document.createElement("li");
-    li.className = `task ${task.completed ? "completed" : ""}`;
-
-    li.innerHTML = `
-      <input type="checkbox" ${task.completed ? "checked" : ""}>
-      <span>${task.text}</span>
-    `;
-
-    li.querySelector("input").onclick = () => {
-      task.completed = !task.completed;
-      save();
-    };
-
-    li.onclick = e => {
-      if (e.target.tagName === "INPUT") return;
-      openDetail(task.id);
-    };
-
-    li.oncontextmenu = e => {
-      e.preventDefault();
-      tasks = tasks.filter(t => t.id !== task.id);
-      taskDetail.classList.add("hidden");
-      save();
-    };
-
-    taskList.appendChild(li);
-  });
+function today() {
+  return new Date().toISOString().split("T")[0];
 }
 
-/* DETAIL */
-
-function openDetail(id) {
-  selectedTaskId = id;
-  const task = tasks.find(t => t.id === id);
-
-  detailTitle.value = task.text;
-  detailNotes.value = task.notes;
-  taskDetail.classList.remove("hidden");
-}
-
-detailTitle.oninput = () => {
-  const task = tasks.find(t => t.id === selectedTaskId);
-  task.text = detailTitle.value;
-  save();
-};
-
-detailNotes.oninput = () => {
-  const task = tasks.find(t => t.id === selectedTaskId);
-  task.notes = detailNotes.value;
-  save();
-};
-
-closeDetailBtn.onclick = () => {
-  taskDetail.classList.add("hidden");
-  selectedTaskId = null;
-};
-
-renderTasks();
+render();

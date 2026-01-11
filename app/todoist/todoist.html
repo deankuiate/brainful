@@ -1,87 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <base href="/brainful/">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="todoist.css" />
 
-    <link rel="stylesheet" href="app/todoist/todoist.css" />
-    <link rel="icon" type="image/png" href="logo/favicon.png">
-
-    <title>Brainful – Todoist</title>
+    <title>Brainful – Todo</title>
   </head>
 
   <body>
     <!-- HEADER (UNCHANGED) -->
     <header>
-      <a class="logo" href="app/about/about.html">
+      <a class="logo" href="#">
         <img src="logo/whitelogo.png" alt="logo">
       </a>
       <nav>
         <ul class="nav__links">
-          <li><a href="app/scheduler/scheduler.html">Scheduler</a></li>
-          <li><a href="app/todoist/todoist.html">ToDoist</a></li>
-          <li><a href="app/notes/notes.html">Notes</a></li>
+          <li><a href="#">Scheduler</a></li>
+          <li><a href="#">ToDoist</a></li>
+          <li><a href="#">Notes</a></li>
         </ul>
       </nav>
     </header>
 
-    <!-- APP -->
     <main class="app">
+      <!-- SIDEBAR -->
       <aside class="sidebar">
-        <button class="add-task-btn">
-          <i class="fa-solid fa-plus"></i>
-          New Task
+        <button id="new-task-btn">
+          <i class="fa-solid fa-plus"></i> New Task
         </button>
 
         <ul class="menu">
-          <li class="active">
-            <i class="fa-regular fa-calendar"></i>
-            Today
-          </li>
+          <li data-view="inbox" class="active">Inbox</li>
+          <li data-view="today">Today</li>
+          <li data-view="upcoming">Upcoming</li>
         </ul>
       </aside>
 
+      <!-- MAIN -->
       <section class="content">
-        <h1 id="view-title">Today</h1>
-
+        <h1 id="view-title">Inbox</h1>
         <ul id="task-list"></ul>
-
-        <div class="task-input hidden">
-          <input
-            type="text"
-            id="task-text"
-            placeholder="What do you want to get done?"
-            autofocus
-          />
-
-          <div class="task-actions">
-            <button id="cancel-task">Cancel</button>
-            <button id="save-task">Add</button>
-          </div>
-        </div>
       </section>
 
-      <aside id="task-detail" class="task-detail hidden">
-        <div class="detail-header">
-          <span>Task</span>
-          <span id="close-detail">✕</span>
-        </div>
+      <!-- DETAIL -->
+      <aside id="detail" class="detail hidden">
+        <input id="detail-title" placeholder="Task title" />
+        <textarea id="detail-notes" placeholder="Notes…"></textarea>
 
-        <input id="detail-title" />
-        <textarea
-          id="detail-notes"
-          placeholder="Add notes, thoughts, or steps..."
-        ></textarea>
+        <label>
+          Due date
+          <input type="date" id="detail-date" />
+        </label>
+
+        <label>
+          Priority
+          <select id="detail-priority">
+            <option value="1">P1</option>
+            <option value="2">P2</option>
+            <option value="3">P3</option>
+          </select>
+        </label>
+
+        <button id="delete-task">Delete task</button>
       </aside>
     </main>
 
