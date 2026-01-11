@@ -1,4 +1,3 @@
-const closeDetailBtn = document.getElementById("close-detail");
 const addTaskBtn = document.querySelector(".add-task-btn");
 const taskInputBox = document.querySelector(".task-input");
 const saveTaskBtn = document.getElementById("save-task");
@@ -9,18 +8,31 @@ const taskText = document.getElementById("task-text");
 const taskDetail = document.getElementById("task-detail");
 const detailTitle = document.getElementById("detail-title");
 const detailNotes = document.getElementById("detail-notes");
+const closeDetailBtn = document.getElementById("close-detail");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let selectedTaskId = null;
 
 /* ADD TASK */
 
-addTaskBtn.onclick = () => taskInputBox.classList.remove("hidden");
+addTaskBtn.onclick = () => {
+  taskInputBox.classList.remove("hidden");
+  taskText.focus();
+};
 
-cancelTaskBtn.onclick = () => taskInputBox.classList.add("hidden");
+cancelTaskBtn.onclick = () => {
+  taskInputBox.classList.add("hidden");
+  taskText.value = "";
+};
 
-saveTaskBtn.onclick = () => {
-  if (!taskText.value) return;
+saveTaskBtn.onclick = addTask;
+
+taskText.addEventListener("keydown", e => {
+  if (e.key === "Enter") addTask();
+});
+
+function addTask() {
+  if (!taskText.value.trim()) return;
 
   tasks.push({
     id: Date.now(),
@@ -32,7 +44,7 @@ saveTaskBtn.onclick = () => {
   taskText.value = "";
   taskInputBox.classList.add("hidden");
   save();
-};
+}
 
 /* SAVE */
 
@@ -41,15 +53,14 @@ function save() {
   renderTasks();
 }
 
-/* RENDER TASKS */
+/* RENDER */
 
 function renderTasks() {
   taskList.innerHTML = "";
 
-  tasks.forEach((task, index) => {
+  tasks.forEach(task => {
     const li = document.createElement("li");
-    li.className = "task" + (task.completed ? " completed" : "");
-    li.draggable = true;
+    li.className = `task ${task.completed ? "completed" : ""}`;
     li.dataset.id = task.id;
 
     li.innerHTML = `
@@ -57,59 +68,28 @@ function renderTasks() {
       <span>${task.text}</span>
     `;
 
-    /* COMPLETE */
     li.querySelector("input").onclick = () => {
       task.completed = !task.completed;
       save();
     };
 
-    /* SELECT */
-    li.onclick = (e) => {
+    li.onclick = e => {
       if (e.target.tagName === "INPUT") return;
       openDetail(task.id);
     };
 
-    /* RIGHT CLICK DELETE */
-    li.oncontextmenu = (e) => {
+    li.oncontextmenu = e => {
       e.preventDefault();
       tasks = tasks.filter(t => t.id !== task.id);
       taskDetail.classList.add("hidden");
       save();
     };
 
-    /* DRAG */
-    li.addEventListener("dragstart", () => {
-      li.classList.add("dragging");
-    });
-
-    li.addEventListener("dragend", () => {
-      li.classList.remove("dragging");
-      reorderTasks();
-    });
-
     taskList.appendChild(li);
   });
 }
 
-/* DRAG ORDER */
-
-taskList.addEventListener("dragover", e => {
-  e.preventDefault();
-  const dragging = document.querySelector(".dragging");
-  const after = [...taskList.children].find(
-    el => e.clientY <= el.offsetTop + el.offsetHeight / 2
-  );
-  if (after) taskList.insertBefore(dragging, after);
-  else taskList.appendChild(dragging);
-});
-
-function reorderTasks() {
-  const ids = [...taskList.children].map(li => Number(li.dataset.id));
-  tasks.sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
-  save();
-}
-
-/* DETAIL PANEL */
+/* DETAIL */
 
 function openDetail(id) {
   selectedTaskId = id;

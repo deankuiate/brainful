@@ -1,77 +1,76 @@
+<!DOCTYPE html>
 <html lang="en">
-  <base href="/brainful/">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content=""
-    />
-    <meta
-      name="keywords"
-      content="calendar, events, reminders"
-    />
+    <title>Brainful — ToDoist</title>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="app/todoist/todoist.css" />
-    <link rel="icon" type="image/png" href="logo/favicon.png">
-    <title>Brainful - ToDoist</title>
+    <link rel="stylesheet" href="todoist.css" />
   </head>
+
   <body>
     <header>
-       <a class="logo" href="app/about/about.html"><img src="logo/whitelogo.png" alt="logo"></a>
-            <nav>
-                <ul class="nav__links">
-                    <li><a href="app/scheduler/scheduler.html">Scheduler</a></li>
-                    <li><a href="app/todoist/todoist.html">ToDoist</a></li>
-                    <li><a href="app/notes/notes.html">Notes</a></li>
-                </ul>
-            </nav>
+      <div class="logo">Brainful</div>
+      <nav>
+        <a href="#">Scheduler</a>
+        <a href="#" class="active">ToDoist</a>
+        <a href="#">Notes</a>
+      </nav>
     </header>
 
     <main class="app">
-  <aside class="sidebar">
-  <button class="add-task-btn">
-    <i class="fa-solid fa-plus"></i> Add task
-  </button>
+      <aside class="sidebar">
+        <button class="add-task-btn">
+          <i class="fa-solid fa-plus"></i>
+          New Task
+        </button>
 
-  <ul class="menu">
-    <li class="active">
-      <i class="fa-regular fa-calendar"></i> Today
-    </li>
-  </ul>
-</aside>
+        <ul class="menu">
+          <li class="active">
+            <i class="fa-regular fa-calendar"></i>
+            Today
+          </li>
+        </ul>
+      </aside>
 
-  <section class="content">
-    <h1 id="view-title">Today</h1>
+      <section class="content">
+        <h1 id="view-title">Today</h1>
 
-    <ul id="task-list"></ul>
+        <ul id="task-list"></ul>
 
-<div class="task-input hidden">
-  <input type="text" id="task-text" placeholder="Task name" />
-  <div class="task-actions">
-    <button id="cancel-task">Cancel</button>
-    <button id="save-task">Add task</button>
-  </div>
-</div>
-  </section>
+        <div class="task-input hidden">
+          <input
+            type="text"
+            id="task-text"
+            placeholder="What do you want to get done?"
+            autofocus
+          />
 
-<div id="task-detail" class="task-detail hidden">
-  <div class="detail-header">
-    <span id="close-detail">✕</span>
-  </div>
+          <div class="task-actions">
+            <button id="cancel-task">Cancel</button>
+            <button id="save-task">Add</button>
+          </div>
+        </div>
+      </section>
 
-  <input id="detail-title" />
-  <textarea id="detail-notes" placeholder="Add details about the task..."></textarea>
-</div>
+      <aside id="task-detail" class="task-detail hidden">
+        <div class="detail-header">
+          <span>Task</span>
+          <span id="close-detail">✕</span>
+        </div>
 
+        <input id="detail-title" />
+        <textarea
+          id="detail-notes"
+          placeholder="Add notes, thoughts, or steps..."
+        ></textarea>
+      </aside>
+    </main>
 
-</main>
-
-<script src="app/todoist/todoist.js"></script>
+    <script src="todoist.js"></script>
+  </body>
+</html>
