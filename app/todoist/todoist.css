@@ -305,3 +305,26 @@ nav {
 .brainful-todo .task span[contenteditable]:focus {
   border-bottom: 1px dashed white;
 }
+
+/* ============================= */
+/* TASK DATE DISPLAY */
+/* ============================= */
+
+.brainful-todo .task {
+  justify-content: space-between;
+}
+
+.brainful-todo .task-date {
+  font-size: 16px;
+  opacity: 0.4;
+  white-space: nowrap;
+}
+
+/* ============================= */
+/* DATE PICKER STYLE */
+/* ============================= */
+
+.brainful-todo input[type="date"] {
+  color-scheme: dark;
+  font-size: 18px;
+}

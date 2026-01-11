@@ -66,8 +66,16 @@ function render() {
   list.innerHTML = "";
 
   let filtered = tasks.filter(t => {
-    if (view === "today") return t.date === today();
-    if (view === "upcoming") return t.date && t.date !== today();
+    if (view === "today") {
+      return t.date === today();
+    }
+
+    if (view === "upcoming") {
+      // Show tasks that are:
+      // - in the future
+      // - OR have no date yet
+      return !t.date || t.date > today();
+    }
   });
 
   filtered.sort((a, b) => a.order - b.order);
@@ -75,7 +83,7 @@ function render() {
   empty.textContent =
     view === "today"
       ? "Your mind is clear. Nothing for today."
-      : "Nothing planned yet.";
+      : "No upcoming plans yet.";
 
   empty.style.display = filtered.length ? "none" : "block";
 
@@ -84,14 +92,10 @@ function render() {
     li.className = `task ${t.completed ? "completed" : ""}`;
     li.draggable = true;
 
-    const span = document.createElement("span");
-    span.textContent = t.title;
-    span.contentEditable = true;
-
-    span.oninput = () => {
-      t.title = span.textContent.trim() || "Untitled";
-      save(false);
-    };
+    const left = document.createElement("div");
+    left.style.display = "flex";
+    left.style.alignItems = "center";
+    left.style.gap = "14px";
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -102,8 +106,24 @@ function render() {
       save();
     };
 
-    li.appendChild(checkbox);
-    li.appendChild(span);
+    const span = document.createElement("span");
+    span.textContent = t.title;
+    span.contentEditable = true;
+
+    span.oninput = () => {
+      t.title = span.textContent.trim() || "Untitled";
+      save(false);
+    };
+
+    left.appendChild(checkbox);
+    left.appendChild(span);
+
+    const right = document.createElement("div");
+    right.className = "task-date";
+    right.textContent = t.date ? formatDate(t.date) : "No date";
+
+    li.appendChild(left);
+    li.appendChild(right);
 
     li.onclick = e => {
       if (e.target !== checkbox) open(t.id);
@@ -182,7 +202,7 @@ document.getElementById("delete-task").onclick = () => {
 };
 
 /* ============================= */
-/* KEYBOARD SHORTCUTS */
+/* KEYBOARD */
 /* ============================= */
 
 document.addEventListener("keydown", e => {
@@ -214,6 +234,14 @@ function save(rerender = true) {
 
 function today() {
   return new Date().toISOString().split("T")[0];
+}
+
+function formatDate(d) {
+  const date = new Date(d + "T00:00:00");
+  return date.toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric"
+  });
 }
 
 /* ============================= */
