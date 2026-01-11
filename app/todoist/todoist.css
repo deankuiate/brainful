@@ -262,3 +262,46 @@ nav {
 .hidden {
   display: none !important;
 }
+
+/* ============================= */
+/* MICRO INTERACTIONS & ANIMS */
+/* ============================= */
+
+.brainful-todo .task {
+  animation: taskIn 0.25s ease;
+}
+
+@keyframes taskIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brainful-todo .detail {
+  animation: panelIn 0.25s ease;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.brainful-todo .task span[contenteditable] {
+  outline: none;
+  border-bottom: 1px dashed transparent;
+}
+
+.brainful-todo .task span[contenteditable]:focus {
+  border-bottom: 1px dashed white;
+}
