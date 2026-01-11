@@ -32,25 +32,41 @@
       </nav>
     </header>
 
-
-    <main class="app">
+ <main class="app">
       <!-- SIDEBAR -->
       <aside class="sidebar">
         <button id="new-task-btn">
           <i class="fa-solid fa-plus"></i> New Task
         </button>
 
+        <input id="search" placeholder="Search tasks..." />
+
         <ul class="menu">
           <li data-view="inbox" class="active">Inbox</li>
           <li data-view="today">Today</li>
           <li data-view="upcoming">Upcoming</li>
         </ul>
+
+        <div class="sidebar-footer">
+          <span id="task-count"></span>
+          <button id="clear-completed">Clear Done</button>
+        </div>
       </aside>
 
       <!-- MAIN -->
       <section class="content">
-        <h1 id="view-title">Inbox</h1>
+        <div class="content-header">
+          <h1 id="view-title">Inbox</h1>
+
+          <select id="sort">
+            <option value="manual">Manual</option>
+            <option value="date">By Date</option>
+            <option value="priority">By Priority</option>
+          </select>
+        </div>
+
         <ul id="task-list"></ul>
+        <div id="empty" class="empty">No tasks here 👀</div>
       </section>
 
       <!-- DETAIL -->
@@ -66,9 +82,9 @@
         <label>
           Priority
           <select id="detail-priority">
-            <option value="1">P1</option>
-            <option value="2">P2</option>
-            <option value="3">P3</option>
+            <option value="1">P1 (High)</option>
+            <option value="2">P2 (Medium)</option>
+            <option value="3">P3 (Low)</option>
           </select>
         </label>
 

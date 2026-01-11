@@ -4,6 +4,8 @@ let view = "inbox";
 
 const list = document.getElementById("task-list");
 const title = document.getElementById("view-title");
+const count = document.getElementById("task-count");
+const empty = document.getElementById("empty");
 
 const detail = document.getElementById("detail");
 const dTitle = document.getElementById("detail-title");
@@ -18,7 +20,8 @@ document.getElementById("new-task-btn").onclick = () => {
     notes: "",
     date: "",
     priority: 2,
-    completed: false
+    completed: false,
+    order: Date.now()
   };
   tasks.unshift(t);
   save();
@@ -35,34 +38,61 @@ document.querySelectorAll(".menu li").forEach(li => {
   };
 });
 
+document.getElementById("search").oninput = render;
+document.getElementById("sort").onchange = render;
+
+document.getElementById("clear-completed").onclick = () => {
+  tasks = tasks.filter(t => !t.completed);
+  save();
+};
+
 function render() {
   list.innerHTML = "";
 
-  tasks
-    .filter(t => {
-      if (view === "today") return t.date === today();
-      if (view === "upcoming") return t.date > today();
-      return true;
-    })
-    .forEach(t => {
-      const li = document.createElement("li");
-      li.className = `task ${t.completed ? "completed" : ""}`;
-      li.innerHTML = `
-        <input type="checkbox" ${t.completed ? "checked" : ""}>
-        <span>${t.title}</span>
-      `;
+  let filtered = tasks.filter(t => {
+    if (view === "today") return t.date === today();
+    if (view === "upcoming") return t.date > today();
+    return true;
+  });
 
-      li.querySelector("input").onclick = e => {
-        t.completed = e.target.checked;
-        save();
-      };
+  const q = document.getElementById("search").value.toLowerCase();
+  filtered = filtered.filter(t => t.title.toLowerCase().includes(q));
 
-      li.onclick = e => {
-        if (e.target.tagName !== "INPUT") open(t.id);
-      };
+  const sort = document.getElementById("sort").value;
+  if (sort === "date") filtered.sort((a, b) => (a.date || "9999").localeCompare(b.date || "9999"));
+  if (sort === "priority") filtered.sort((a, b) => a.priority - b.priority);
+  if (sort === "manual") filtered.sort((a, b) => a.order - b.order);
 
-      list.appendChild(li);
-    });
+  empty.style.display = filtered.length ? "none" : "block";
+  count.textContent = `${tasks.length} tasks`;
+
+  filtered.forEach(t => {
+    const li = document.createElement("li");
+    li.className = `task ${t.completed ? "completed" : ""} ${selected?.id === t.id ? "selected" : ""}`;
+
+    li.innerHTML = `
+      <input type="checkbox" ${t.completed ? "checked" : ""}>
+      <span contenteditable>${t.title}</span>
+      ${t.date ? `<span class="badge">${t.date}</span>` : ""}
+      <span class="badge p${t.priority}">P${t.priority}</span>
+    `;
+
+    li.querySelector("input").onclick = e => {
+      t.completed = e.target.checked;
+      save();
+    };
+
+    li.querySelector("span").onblur = e => {
+      t.title = e.target.textContent;
+      save();
+    };
+
+    li.onclick = e => {
+      if (e.target.tagName !== "INPUT") open(t.id);
+    };
+
+    list.appendChild(li);
+  });
 }
 
 function open(id) {
@@ -73,6 +103,8 @@ function open(id) {
   dNotes.value = selected.notes;
   dDate.value = selected.date;
   dPriority.value = selected.priority;
+
+  render();
 }
 
 [dTitle, dNotes, dDate, dPriority].forEach(el => {
@@ -88,6 +120,7 @@ function open(id) {
 
 document.getElementById("delete-task").onclick = () => {
   tasks = tasks.filter(t => t !== selected);
+  selected = null;
   detail.classList.add("hidden");
   save();
 };
