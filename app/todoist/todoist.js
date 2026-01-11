@@ -61,7 +61,6 @@ function renderTasks() {
   tasks.forEach(task => {
     const li = document.createElement("li");
     li.className = `task ${task.completed ? "completed" : ""}`;
-    li.dataset.id = task.id;
 
     li.innerHTML = `
       <input type="checkbox" ${task.completed ? "checked" : ""}>

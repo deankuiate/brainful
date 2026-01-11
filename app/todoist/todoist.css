@@ -2,34 +2,42 @@
 
 :root {
   --primary-clr: #000000;
+
+  /* Brainful dark theme */
+  --bg: #0b0b0c;
+  --panel: #111214;
+  --panel-soft: #15171a;
+  --border: #1f2125;
+  --text: #f5f5f5;
+  --muted: #9ca3af;
+  --accent: #ffffff;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Cause", cursive;
 }
-/* nice scroll bar */
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
-  border-radius: 50px;
+  background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  border-radius: 50px;
+  background: #444;
+  border-radius: 10px;
 }
 
 body {
   min-height: 100vh;
-  display: block;
-  background-color: #000000;
-  padding: 0;
-  margin: 0;
+  background-color: var(--bg);
 }
 
-/* navagation bar */
+/* HEADER — UNTOUCHED */
 
 header {
   display: flex;
@@ -40,13 +48,11 @@ header {
   padding: 0 10%;
 }
 
-/* LOGO */
 .logo img {
   height: 70px;
   width: 70px;
 }
 
-/* NAVIGATION */
 nav {
   display: flex;
   align-items: center;
@@ -61,22 +67,11 @@ nav {
   list-style: none;
 }
 
-.nav__links li {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
 .nav__links li a {
-  display: flex;
-  align-items: center;
-  height: 100%;
   color: white;
   text-decoration: none;
   font-size: 21px;
   font-weight: 300;
-  padding: 0 10px;
-  transition: color 0.3s ease;
 }
 
 .nav__links li a:hover {
@@ -87,7 +82,7 @@ nav {
 
 .app {
   display: flex;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 130px);
 }
 
 /* SIDEBAR */
@@ -95,8 +90,8 @@ nav {
 .sidebar {
   width: 260px;
   padding: 24px;
-  border-right: 1px solid var(--border);
   background: var(--panel);
+  border-right: 1px solid var(--border);
 }
 
 .add-task-btn {
@@ -108,11 +103,7 @@ nav {
   font-weight: 500;
   cursor: pointer;
   margin-bottom: 32px;
-  transition: transform 0.15s ease;
-}
-
-.add-task-btn:hover {
-  transform: translateY(-1px);
+  border-radius: 10px;
 }
 
 .menu {
@@ -120,9 +111,6 @@ nav {
 }
 
 .menu li {
-  display: flex;
-  gap: 12px;
-  align-items: center;
   padding: 10px 6px;
   font-size: 14px;
   cursor: pointer;
@@ -144,11 +132,11 @@ nav {
 
 .content h1 {
   font-size: 28px;
-  font-weight: 500;
   margin-bottom: 32px;
+  color: var(--text);
 }
 
-/* TASK LIST */
+/* TASKS */
 
 #task-list {
   list-style: none;
@@ -158,31 +146,23 @@ nav {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 14px 6px;
-  border-bottom: 1px solid var(--border);
+  padding: 14px 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s ease;
 }
 
 .task:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--panel-soft);
 }
 
 .task input[type="checkbox"] {
-  appearance: none;
   width: 18px;
   height: 18px;
-  border: 1px solid var(--muted);
   cursor: pointer;
 }
 
-.task input[type="checkbox"]:checked {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
 .task span {
-  font-size: 15px;
+  color: var(--text);
 }
 
 .task.completed span {
@@ -194,9 +174,9 @@ nav {
 
 .task-input {
   margin-top: 32px;
-  border: 1px solid var(--border);
   padding: 20px;
   background: var(--panel);
+  border-radius: 12px;
 }
 
 .task-input input {
@@ -206,11 +186,6 @@ nav {
   border-bottom: 1px solid var(--border);
   color: var(--text);
   font-size: 16px;
-  padding-bottom: 8px;
-}
-
-.task-input input:focus {
-  outline: none;
 }
 
 .task-actions {
@@ -222,13 +197,8 @@ nav {
 
 .task-actions button {
   padding: 8px 16px;
-  cursor: pointer;
   border: none;
-}
-
-#cancel-task {
-  background: transparent;
-  color: var(--muted);
+  cursor: pointer;
 }
 
 #save-task {
@@ -241,35 +211,18 @@ nav {
 .task-detail {
   width: 320px;
   padding: 24px;
-  border-left: 1px solid var(--border);
   background: var(--panel);
+  border-left: 1px solid var(--border);
 }
 
-.detail-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  color: var(--muted);
-}
-
-.task-detail input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
+.task-detail input,
 .task-detail textarea {
   width: 100%;
-  min-height: 160px;
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 12px;
-  resize: vertical;
+  padding: 10px;
+  margin-bottom: 16px;
 }
 
 .hidden {
