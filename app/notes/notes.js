@@ -1,13 +1,15 @@
+// dom refs
 const newPageBtn = document.getElementById("new-page");
 const pageList = document.getElementById("page-list");
 const titleInput = document.getElementById("page-title");
 const contentInput = document.getElementById("page-content");
 const emptyState = document.getElementById("empty-state");
 
+// state
 let pages = JSON.parse(localStorage.getItem("brainful-pages")) || [];
 let currentPageId = null;
 
-
+// hide editor and show empty state
 function disableEditor() {
   titleInput.value = "";
   contentInput.value = "";
@@ -20,7 +22,7 @@ function disableEditor() {
   emptyState.style.display = "flex";
 }
 
-
+// show editor and hide empty state
 function enableEditor() {
   titleInput.disabled = false;
   contentInput.disabled = false;
@@ -30,8 +32,7 @@ function enableEditor() {
   emptyState.style.display = "none";
 }
 
-
-// Render pages in sidebar
+// render sidebar page list
 function renderPages() {
   pageList.innerHTML = "";
 
@@ -59,7 +60,7 @@ function renderPages() {
   });
 }
 
-// Open a page
+// load a page into the editor
 function openPage(id) {
   const page = pages.find(p => p.id === id);
   if (!page) return;
@@ -72,7 +73,7 @@ function openPage(id) {
   renderPages();
 }
 
-// Create new page
+// create new page
 newPageBtn.onclick = () => {
   const newPage = {
     id: Date.now(),
@@ -84,7 +85,7 @@ newPageBtn.onclick = () => {
   openPage(newPage.id);
 };
 
-// Save edits
+// autosave title on input
 titleInput.oninput = () => {
   const page = pages.find(p => p.id === currentPageId);
   if (!page) return;
@@ -93,6 +94,7 @@ titleInput.oninput = () => {
   renderPages();
 };
 
+// autosave content on input
 contentInput.oninput = () => {
   const page = pages.find(p => p.id === currentPageId);
   if (!page) return;
@@ -100,11 +102,12 @@ contentInput.oninput = () => {
   save();
 };
 
+// persist to localstorage
 function save() {
   localStorage.setItem("brainful-pages", JSON.stringify(pages));
 }
 
-// Init
+// init: open first page or show empty state
 if (pages.length) {
   openPage(pages[0].id);
 } else {
@@ -112,6 +115,7 @@ if (pages.length) {
 }
 renderPages();
 
+// delete a page by id
 function deletePage(id) {
   pages = pages.filter(p => p.id !== id);
 
@@ -127,5 +131,3 @@ function deletePage(id) {
   save();
   renderPages();
 }
-
-

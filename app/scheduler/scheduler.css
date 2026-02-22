@@ -3,13 +3,16 @@
 :root {
   --primary-clr: #000000;
 }
+
+/* reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Cause", cursive;
 }
-/* nice scroll bar */
+
+/* scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -21,6 +24,7 @@
   border-radius: 50px;
 }
 
+/* body */
 body {
   min-height: 100vh;
   display: block;
@@ -29,7 +33,7 @@ body {
   margin: 0;
 }
 
-/* Header */
+/* header */
 header {
   display: flex;
   align-items: center;
@@ -64,6 +68,7 @@ nav {
   position: relative;
 }
 
+/* nav underline animation */
 .nav__links li a::after {
   content: "";
   position: absolute;
@@ -80,9 +85,7 @@ nav {
   width: 60%;
 }
 
-
-
-/* main content for the scheulder */
+/* main layout */
 .container {
   position: relative;
   width: 1200px;
@@ -90,14 +93,16 @@ nav {
   padding: 5px;
   color: #fff;
   display: flex;
-
   border-radius: 10px;
   background-color: #000000;
 }
+
 .left {
   width: 60%;
   padding: 20px;
 }
+
+/* calendar card */
 .calendar {
   position: relative;
   width: 100%;
@@ -110,7 +115,8 @@ nav {
   border-radius: 5px;
   background-color: #fff;
 }
-/* set after behind the main element */
+
+/* stacked paper effect */
 .calendar::before,
 .calendar::after {
   content: "";
@@ -128,6 +134,8 @@ nav {
   left: calc(100% + 12px);
   background-color: rgb(153, 153, 153);
 }
+
+/* month header */
 .calendar .month {
   width: 100%;
   height: 150px;
@@ -147,6 +155,8 @@ nav {
 .calendar .month .next:hover {
   color: var(--primary-clr);
 }
+
+/* weekday labels */
 .calendar .weekdays {
   width: 100%;
   height: 100px;
@@ -166,6 +176,8 @@ nav {
   align-items: center;
   justify-content: center;
 }
+
+/* day grid */
 .calendar .days {
   width: 100%;
   display: flex;
@@ -203,10 +215,14 @@ nav {
   color: #fff;
   background-color: var(--primary-clr);
 }
+
+/* faded prev/next month days */
 .calendar .days .prev-date,
 .calendar .days .next-date {
   color: #b3b3b3;
 }
+
+/* active (selected) day */
 .calendar .days .active {
   position: relative;
   font-size: 2rem;
@@ -222,9 +238,13 @@ nav {
   height: 100%;
   box-shadow: 0 0 10px 2px var(--primary-clr);
 }
+
+/* today highlight */
 .calendar .days .today {
   font-size: 2rem;
 }
+
+/* event indicator dot */
 .calendar .days .event {
   position: relative;
 }
@@ -249,6 +269,8 @@ nav {
 .calendar .days .active.event {
   padding-bottom: 10px;
 }
+
+/* goto date + today button bar */
 .calendar .goto-today {
   width: 100%;
   height: 50px;
@@ -294,6 +316,8 @@ nav {
   border-left: 1px solid var(--primary-clr);
   border-radius: 0;
 }
+
+/* event panel (right side) */
 .container .right {
   position: relative;
   width: 40%;
@@ -322,6 +346,8 @@ nav {
   font-size: 1.2rem;
   color: #ffffff;
 }
+
+/* events list */
 .events {
   width: 100%;
   height: 100%;
@@ -346,7 +372,6 @@ nav {
   background: linear-gradient(90deg, #3f4458, transparent);
   cursor: pointer;
 }
-/* even event */
 .events .event:nth-child(even) {
   background: transparent;
 }
@@ -380,7 +405,8 @@ nav {
 .events .event:hover .event-time {
   color: #fff;
 }
-/* add tick in event after */
+
+/* checkmark shown on event hover */
 .events .event::after {
   content: "✓";
   position: absolute;
@@ -398,6 +424,8 @@ nav {
 .events .event:hover::after {
   display: flex;
 }
+
+/* add event button */
 .add-event {
   position: absolute;
   bottom: 30px;
@@ -421,6 +449,8 @@ nav {
 .add-event i {
   pointer-events: none;
 }
+
+/* empty events state */
 .events .no-event {
   width: 100%;
   height: 100%;
@@ -430,6 +460,8 @@ nav {
   font-size: 2rem;
   color: #ffffff;
 }
+
+/* add event form (slides up) */
 .add-event-wrapper {
   position: absolute;
   bottom: 100px;
@@ -526,8 +558,7 @@ nav {
   color: var(--primary-clr);
 }
 
-/* media queries */
-
+/* responsive — tablet */
 @media screen and (max-width: 1000px) {
   body {
     align-items: flex-start;
@@ -568,6 +599,8 @@ nav {
     bottom: 100px;
   }
 }
+
+/* responsive — mobile */
 @media screen and (max-width: 500px) {
   .calendar .month {
     height: 75px;

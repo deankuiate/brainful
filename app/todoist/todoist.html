@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <!-- Header -->
+    <!-- header -->
     <header>
       <a class="logo" href="app/about/about.html">
         <img src="logo/whitelogo.png" alt="logo" />
@@ -32,9 +32,10 @@
       </nav>
     </header>
 
+    <!-- app layout -->
+    <main class="app brainful-todo">
 
-  <main class="app brainful-todo">
-      <!-- SIDEBAR -->
+      <!-- sidebar: new task + view menu -->
       <aside class="sidebar">
         <button id="new-task-btn">
           <i class="fa-solid fa-plus"></i> New Task
@@ -46,14 +47,14 @@
         </ul>
       </aside>
 
-      <!-- MAIN -->
+      <!-- main: task list -->
       <section class="content">
         <h1 id="view-title">Today</h1>
         <ul id="task-list"></ul>
         <div id="empty" class="empty">No tasks here 👀</div>
       </section>
 
-      <!-- DETAIL -->
+      <!-- detail panel: task editor -->
       <aside id="detail" class="detail hidden">
         <input id="detail-title" placeholder="Task title" />
         <textarea id="detail-notes" placeholder="Notes…"></textarea>
@@ -67,6 +68,7 @@
 
         <button id="delete-task">Delete task</button>
       </aside>
+
     </main>
 
     <script src="app/todoist/todoist.js"></script>

@@ -4,7 +4,7 @@
   --primary-clr: #000000;
 }
 
-/* GLOBAL RESET (MATCHES YOUR SITE) */
+/* reset */
 * {
   scroll-behavior: smooth;
   margin: 0;
@@ -20,9 +20,7 @@ html, body {
   color: white;
 }
 
-/* ========================= */
-/* SCROLLBAR (YOUR STYLE) */
-/* ========================= */
+/* scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -34,9 +32,7 @@ html, body {
   border-radius: 50px;
 }
 
-/* ========================= */
-/* HEADER (EXACT COPY) */
-/* ========================= */
+/* header */
 header {
   display: flex;
   align-items: center;
@@ -71,6 +67,7 @@ nav {
   position: relative;
 }
 
+/* nav underline animation */
 .nav__links li a::after {
   content: "";
   position: absolute;
@@ -87,14 +84,13 @@ nav {
   width: 60%;
 }
 
-
-/* NOTION LAYOUT */
+/* app layout */
 .notion-app {
   display: flex;
   height: calc(100vh - 130px);
 }
 
-/* SIDEBAR */
+/* sidebar */
 .sidebar {
   width: 260px;
   border-right: 2px solid white;
@@ -129,7 +125,7 @@ nav {
   color: black;
 }
 
-/* EDITOR */
+/* editor */
 .editor {
   flex: 1;
   padding: 40px;
@@ -158,7 +154,7 @@ nav {
   line-height: 1.6;
 }
 
-/* PAGE TAB WITH DELETE */
+/* page list item row */
 #page-list li {
   display: flex;
   justify-content: space-between;
@@ -175,7 +171,7 @@ nav {
   text-overflow: ellipsis;
 }
 
-/* Trash button */
+/* trash button — hidden until hover */
 .delete-page {
   opacity: 0;
   background: none;
@@ -190,11 +186,11 @@ nav {
   opacity: 1;
 }
 
-/* Prevent click conflict */
 .delete-page:hover {
   color: red;
 }
 
+/* empty state */
 #empty-state {
   flex: 1;
   display: none;

@@ -4,7 +4,7 @@
   --primary-clr: #000000;
 }
 
-/* GLOBAL RESET (MATCHES YOUR SITE) */
+/* reset */
 * {
   scroll-behavior: smooth;
   margin: 0;
@@ -20,9 +20,7 @@ html, body {
   color: white;
 }
 
-/* ========================= */
-/* SCROLLBAR (YOUR STYLE) */
-/* ========================= */
+/* scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -34,9 +32,7 @@ html, body {
   border-radius: 50px;
 }
 
-/* ========================= */
-/* HEADER (EXACT COPY) */
-/* ========================= */
+/* header */
 header {
   display: flex;
   align-items: center;
@@ -71,6 +67,7 @@ nav {
   position: relative;
 }
 
+/* nav underline animation */
 .nav__links li a::after {
   content: "";
   position: absolute;
@@ -87,11 +84,7 @@ nav {
   width: 60%;
 }
 
-/* ========================= */
-/* APP WRAPPER */
-/* ========================= */
-
-/* This centers and contains the app nicely */
+/* app wrapper */
 .app.brainful-todo {
   height: calc(100vh - 130px);
   width: 100%;
@@ -100,16 +93,14 @@ nav {
   align-items: center;
 }
 
-/* The actual app box */
+/* panel heights */
 .brainful-todo > .sidebar,
 .brainful-todo > .content,
 .brainful-todo > .detail {
   height: 85%;
 }
 
-/* ========================= */
-/* SIDEBAR */
-/* ========================= */
+/* sidebar */
 .brainful-todo .sidebar {
   width: 240px;
   border-right: 1px solid #1a1a1a;
@@ -119,7 +110,7 @@ nav {
   gap: 40px;
 }
 
-/* Button */
+/* new task button */
 .brainful-todo #new-task-btn {
   background: transparent;
   border: 1px solid white;
@@ -135,7 +126,7 @@ nav {
   color: black;
 }
 
-/* Menu */
+/* view menu */
 .brainful-todo .menu {
   list-style: none;
   display: flex;
@@ -155,9 +146,7 @@ nav {
   opacity: 1;
 }
 
-/* ========================= */
-/* CONTENT */
-/* ========================= */
+/* content area */
 .brainful-todo .content {
   width: 600px;
   padding: 50px;
@@ -169,7 +158,7 @@ nav {
   font-weight: 200;
 }
 
-/* Task list */
+/* task list */
 .brainful-todo #task-list {
   list-style: none;
   margin-top: 40px;
@@ -178,7 +167,7 @@ nav {
   gap: 18px;
 }
 
-/* Task */
+/* task row */
 .brainful-todo .task {
   display: flex;
   align-items: center;
@@ -201,21 +190,20 @@ nav {
   transform: scale(1.2);
 }
 
+/* completed task */
 .brainful-todo .task.completed span {
   text-decoration: line-through;
   opacity: 0.3;
 }
 
-/* Empty */
+/* empty state */
 .brainful-todo .empty {
   margin-top: 40px;
   font-size: 18px;
   opacity: 0.4;
 }
 
-/* ========================= */
-/* DETAIL PANEL */
-/* ========================= */
+/* detail panel */
 .brainful-todo .detail {
   width: 300px;
   border-left: 1px solid #1a1a1a;
@@ -225,7 +213,7 @@ nav {
   gap: 24px;
 }
 
-/* Inputs */
+/* detail inputs */
 .brainful-todo .detail input,
 .brainful-todo .detail textarea {
   background: transparent;
@@ -242,7 +230,7 @@ nav {
   min-height: 100px;
 }
 
-/* Delete */
+/* delete button */
 .brainful-todo #delete-task {
   margin-top: auto;
   background: transparent;
@@ -258,15 +246,12 @@ nav {
   color: black;
 }
 
-/* Hidden */
+/* utility */
 .hidden {
   display: none !important;
 }
 
-/* ============================= */
-/* MICRO INTERACTIONS & ANIMS */
-/* ============================= */
-
+/* task entry animation */
 .brainful-todo .task {
   animation: taskIn 0.25s ease;
 }
@@ -282,6 +267,7 @@ nav {
   }
 }
 
+/* detail panel entry animation */
 .brainful-todo .detail {
   animation: panelIn 0.25s ease;
 }
@@ -297,6 +283,7 @@ nav {
   }
 }
 
+/* inline editable task title */
 .brainful-todo .task span[contenteditable] {
   outline: none;
   border-bottom: 1px dashed transparent;
@@ -306,24 +293,19 @@ nav {
   border-bottom: 1px dashed white;
 }
 
-/* ============================= */
-/* TASK DATE DISPLAY */
-/* ============================= */
-
+/* task layout — space between title and date */
 .brainful-todo .task {
   justify-content: space-between;
 }
 
+/* date badge */
 .brainful-todo .task-date {
   font-size: 16px;
   opacity: 0.4;
   white-space: nowrap;
 }
 
-/* ============================= */
-/* DATE PICKER STYLE */
-/* ============================= */
-
+/* native date picker dark mode */
 .brainful-todo input[type="date"] {
   color-scheme: dark;
   font-size: 18px;

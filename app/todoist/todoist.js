@@ -1,8 +1,10 @@
+// state
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let selected = null;
 let view = "today";
 let dragged = null;
 
+// dom refs
 const list = document.getElementById("task-list");
 const title = document.getElementById("view-title");
 const empty = document.getElementById("empty");
@@ -13,14 +15,12 @@ const dNotes = document.getElementById("detail-notes");
 const dDate = document.getElementById("detail-date");
 const dateWrapper = document.getElementById("date-wrapper");
 
-/* ============================= */
-/* NEW TASK */
-/* ============================= */
-
+// new task button
 document.getElementById("new-task-btn").onclick = () => {
   createTask();
 };
 
+// create a blank task and open it
 function createTask() {
   const t = {
     id: Date.now(),
@@ -34,6 +34,7 @@ function createTask() {
   save();
   open(t.id);
 
+  // auto-select title text for immediate editing
   setTimeout(() => {
     const el = document.querySelector(".task span");
     if (el) {
@@ -43,10 +44,7 @@ function createTask() {
   }, 0);
 }
 
-/* ============================= */
-/* VIEW SWITCH */
-/* ============================= */
-
+// sidebar view switching
 document.querySelectorAll(".menu li").forEach(li => {
   li.onclick = () => {
     document.querySelector(".menu .active").classList.remove("active");
@@ -58,10 +56,7 @@ document.querySelectorAll(".menu li").forEach(li => {
   };
 });
 
-/* ============================= */
-/* RENDER */
-/* ============================= */
-
+// render task list for current view
 function render() {
   list.innerHTML = "";
 
@@ -71,9 +66,7 @@ function render() {
     }
 
     if (view === "upcoming") {
-      // Show tasks that are:
-      // - in the future
-      // - OR have no date yet
+      // show tasks with a future date or no date yet
       return !t.date || t.date > today();
     }
   });
@@ -97,6 +90,7 @@ function render() {
     left.style.alignItems = "center";
     left.style.gap = "14px";
 
+    // completion checkbox
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = t.completed;
@@ -106,6 +100,7 @@ function render() {
       save();
     };
 
+    // inline editable title
     const span = document.createElement("span");
     span.textContent = t.title;
     span.contentEditable = true;
@@ -118,6 +113,7 @@ function render() {
     left.appendChild(checkbox);
     left.appendChild(span);
 
+    // date badge
     const right = document.createElement("div");
     right.className = "task-date";
     right.textContent = t.date ? formatDate(t.date) : "No date";
@@ -125,11 +121,12 @@ function render() {
     li.appendChild(left);
     li.appendChild(right);
 
+    // open detail panel on click
     li.onclick = e => {
       if (e.target !== checkbox) open(t.id);
     };
 
-    /* DRAG */
+    // drag-to-reorder handlers
     li.ondragstart = () => {
       dragged = t;
       li.classList.add("dragging");
@@ -155,10 +152,7 @@ function render() {
   });
 }
 
-/* ============================= */
-/* OPEN DETAIL */
-/* ============================= */
-
+// open detail panel for a task
 function open(id) {
   selected = tasks.find(t => t.id === id);
   if (!selected) return;
@@ -169,16 +163,13 @@ function open(id) {
   dNotes.value = selected.notes;
   dDate.value = selected.date;
 
-  // Hide date in Today view
+  // hide date picker in today view
   dateWrapper.style.display = view === "today" ? "none" : "block";
 
   render();
 }
 
-/* ============================= */
-/* EDIT DETAIL */
-/* ============================= */
-
+// sync detail panel edits back to task
 [dTitle, dNotes, dDate].forEach(el => {
   el.oninput = () => {
     if (!selected) return;
@@ -189,10 +180,7 @@ function open(id) {
   };
 });
 
-/* ============================= */
-/* DELETE */
-/* ============================= */
-
+// delete selected task
 document.getElementById("delete-task").onclick = () => {
   if (!selected) return;
   tasks = tasks.filter(t => t !== selected);
@@ -201,16 +189,15 @@ document.getElementById("delete-task").onclick = () => {
   save();
 };
 
-/* ============================= */
-/* KEYBOARD */
-/* ============================= */
-
+// keyboard shortcuts
 document.addEventListener("keydown", e => {
+  // enter creates a new task
   if (e.key === "Enter" && document.activeElement.tagName !== "TEXTAREA") {
     e.preventDefault();
     createTask();
   }
 
+  // delete key removes selected task
   if (e.key === "Delete" && selected) {
     tasks = tasks.filter(t => t !== selected);
     selected = null;
@@ -219,23 +206,18 @@ document.addEventListener("keydown", e => {
   }
 });
 
-/* ============================= */
-/* SAVE */
-/* ============================= */
-
+// persist and optionally re-render
 function save(rerender = true) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   if (rerender) render();
 }
 
-/* ============================= */
-/* UTILS */
-/* ============================= */
-
+// returns today's date as YYYY-MM-DD
 function today() {
   return new Date().toISOString().split("T")[0];
 }
 
+// formats a YYYY-MM-DD string for display
 function formatDate(d) {
   const date = new Date(d + "T00:00:00");
   return date.toLocaleDateString(undefined, {
@@ -244,8 +226,5 @@ function formatDate(d) {
   });
 }
 
-/* ============================= */
-/* INIT */
-/* ============================= */
-
+// init
 render();

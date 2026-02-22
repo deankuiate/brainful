@@ -24,7 +24,7 @@
     <title>Brainful - Scheduler</title>
   </head>
   <body>
-    <!-- Header -->
+    <!-- header -->
     <header>
       <a class="logo" href="app/about/about.html">
         <img src="logo/whitelogo.png" alt="logo" />
@@ -38,14 +38,21 @@
         </ul>
       </nav>
     </header>
+
+    <!-- app layout -->
     <div class="container">
+
+      <!-- left: calendar -->
       <div class="left">
         <div class="calendar">
+          <!-- month nav -->
           <div class="month">
             <i class="fas fa-angle-left prev"></i>
             <div class="date">december 2015</div>
             <i class="fas fa-angle-right next"></i>
           </div>
+
+          <!-- weekday labels -->
           <div class="weekdays">
             <div>Sun</div>
             <div>Mon</div>
@@ -55,7 +62,11 @@
             <div>Fri</div>
             <div>Sat</div>
           </div>
+
+          <!-- day grid (populated by js) -->
           <div class="days"></div>
+
+          <!-- goto date + today button -->
           <div class="goto-today">
             <div class="goto">
               <input type="text" placeholder="MM/YYYY" class="date-input" />
@@ -65,12 +76,19 @@
           </div>
         </div>
       </div>
+
+      <!-- right: event panel -->
       <div class="right">
+        <!-- selected day label -->
         <div class="today-date">
           <div class="event-day">wed</div>
           <div class="event-date">12th december 2022</div>
         </div>
+
+        <!-- event list (populated by js) -->
         <div class="events"></div>
+
+        <!-- add event form -->
         <div class="add-event-wrapper">
           <div class="add-event-header">
             <div class="title">Add Event</div>
@@ -100,9 +118,12 @@
           </div>
         </div>
       </div>
+
+      <!-- floating add event button -->
       <button class="add-event">
         <i class="fas fa-plus"></i>
       </button>
+
     </div>
 
     <script src="app/scheduler/scheduler.js"></script>

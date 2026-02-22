@@ -24,7 +24,7 @@
     <title>Brainful - Notes</title>
   </head>
   <body>
-    <!-- Header -->
+    <!-- header -->
     <header>
       <a class="logo" href="app/about/about.html">
         <img src="logo/whitelogo.png" alt="logo" />
@@ -38,28 +38,28 @@
         </ul>
       </nav>
     </header>
-<!-- NOTION STYLE APP -->
-<div class="notion-app">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <button id="new-page">+ New Page</button>
-    <ul id="page-list"></ul>
-  </aside>
+    <!-- app layout -->
+    <div class="notion-app">
 
- 
+      <!-- sidebar: page list + new page button -->
+      <aside class="sidebar">
+        <button id="new-page">+ New Page</button>
+        <ul id="page-list"></ul>
+      </aside>
 
- <main class="editor">
-  <div id="empty-state">
-    <h2>Create a page</h2>
-    <p>Click "New Page" to start writing</p>
-  </div>
+      <!-- editor: title + content -->
+      <main class="editor">
+        <div id="empty-state">
+          <h2>Create a page</h2>
+          <p>Click "New Page" to start writing</p>
+        </div>
 
-  <input id="page-title" placeholder="Untitled" />
-  <textarea id="page-content" placeholder="Start writing..."></textarea>
-</main>
+        <input id="page-title" placeholder="Untitled" />
+        <textarea id="page-content" placeholder="Start writing..."></textarea>
+      </main>
 
-</div>
+    </div>
 
   <script src="app/notes/notes.js"></script>
 </body>

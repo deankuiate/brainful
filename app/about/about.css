@@ -4,6 +4,7 @@
   --primary-clr: #000000;
 }
 
+/* reset */
 * {
   scroll-behavior: smooth;
   margin: 0;
@@ -13,7 +14,7 @@
   background-color: black;
 }
 
-/* Scrollbar */
+/* scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -25,7 +26,7 @@
   border-radius: 50px;
 }
 
-/* Header */
+/* header */
 header {
   display: flex;
   align-items: center;
@@ -60,6 +61,7 @@ nav {
   position: relative;
 }
 
+/* nav underline animation */
 .nav__links li a::after {
   content: "";
   position: absolute;
@@ -76,7 +78,7 @@ nav {
   width: 60%;
 }
 
-/* Main */
+/* hero */
 .aboutapp {
   color: white;
   text-align: center;
@@ -88,7 +90,7 @@ nav {
   font-weight: 200;
 }
 
-/* Banner */
+/* banner image */
 .aboutbanner img {
   width: 100%;
   max-width: 1100px;
@@ -99,8 +101,7 @@ nav {
   border-radius: 12px;
 }
 
-
-/* Sections */
+/* sections */
 .section {
   padding: 140px 15%;
   color: white;
@@ -119,7 +120,7 @@ nav {
   opacity: 0.9;
 }
 
-/* Description */
+/* about — two-column layout */
 .description-container {
   display: flex;
   align-items: center;
@@ -142,7 +143,7 @@ nav {
   text-align: center;
 }
 
-/* Contact */
+/* contact section */
 .contact-section {
   padding-top: 80px;
   padding-bottom: 120px;
@@ -166,7 +167,7 @@ nav {
   opacity: 0.85;
 }
 
-/* Animations */
+/* scroll-triggered animations */
 .fade-up {
   opacity: 0;
   transform: translateY(40px);
